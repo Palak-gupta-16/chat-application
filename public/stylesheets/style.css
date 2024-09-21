@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  background-color: #dadada;
+  display: flex;
+}
+
+#left {
+  width: 25%;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#left::-webkit-scrollbar {
+  display: none;
+}
+
+#nav {
+  width: 100%;
+  height: 15%;
+  background-color: #E0F6CA;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#user {
+  width: 90%;
+  height: 80%;
+  background-color: #E0F6CA;
+  display: flex;
+  align-items: center;
+}
+
+#user-pic {
+  width: 4.5vw;
+  height: 9vh;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  left: 3vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#user-pic img {
+  height: 20vh;
+  object-fit: cover;
+}
+
+.text h2 {
+  position: relative;
+  left: 7vw;
+  font-family: "gilroy";
+  font-size: 1.3rem;
+}
+
+#user #add-user {
+  font-size: 1.9rem;
+  margin-left: 15vw;
+  cursor: pointer;
+}
+
+#content {
+  font-family: "gilroy";
+  font-size: 1.5rem;
+  margin-left: 2.7vw;
+  margin-top: 2vh;
+}
+
+.chat {
+  width: 94%;
+  height: 11vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-left: .7vw;
+  margin-top: 1vh;
+  cursor: pointer;
+}
+
+.chat:hover {
+  background-color: #dadada;
+}
+
+.text2 h2 {
+  position: relative;
+  left: 8vw;
+  font-family: "gilroy";
+  font-size: 1.3rem;
+}
+
+#right {
+  width: 75%;
+  height: 100%;
+  background-color: cadetblue;
+}
+
+#right-nav {
+  width: 75%;
+  height: 15%;
+  background-color: #35897E;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#chat2 {
+  width: 95%;
+  height: 90%;
+  background-color: #35897E;
+  display: flex;
+  align-items: center;
+}
+
+.text3 h2 {
+  position: relative;
+  left: 7vw;
+  font-family: "gilroy";
+  font-size: 1.3rem;
+}
+
+#msg-input {
+  width: 100%;
+  height: 10vh;
+  outline: none;
+  padding-left: 3vw;
+  border: none;
+  font-size: 1.4rem;
+  font-family: "gilroy";
+  position: relative;
+  top: 15%;
+}
+
+#upper-layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  display: none;
+}
+
+#layer-container {
+  width: 30vw;
+  height: 25vh;
+  background-color: cadetblue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#findUser input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  position: relative;
+  top: 2vh;
+  margin-top: .5vh;
+  outline: none;
+}
+
+.close {
+  color: black;
+  float: right;
+  margin-right: 1vw;
+  font-size: 34px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#conversation {
+  width: 100%;
+  height: 75%;
+  top: 15%;
+  background-color: #EBE5DE;
+  overflow-y: auto;
+  position: relative;
+  padding: 1.5vw;
+}
+
+#conversation::-webkit-scrollbar {
+  display: none;
+}
+
+.conver{
+  padding: 0.7rem 1rem;
+  width: fit-content;
+  background-color: orange;
+  border-radius: 0.5rem;
+  font-family: "gilroy";
+  font-size: 1.3rem;
+  margin-top: 1vh;
+}
+.outgoing{
+  margin-left: auto;
+}
+
+.time {
+  font-size: 0.8rem;
+  text-align: start;
+  opacity: 0.6;
+}
+.time2{
+  text-align: end;
+}
+
+#logout{
+  width: 4vw;
+  height: 4vh;
+  background-color: red;
+  color: white;
+  position: absolute;
+  left: 21%;
+  top: 11%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#logout h1{
+  font-size: .8rem;
+  font-family: "gilroy";
+}
+#logout h1:hover{
+  font-size: .9rem;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) .1s;
+}
+

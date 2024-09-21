@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>passportsocket</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href='https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css' rel='stylesheet' />
+</head>
+
+<body>
+
+  <div id="main">
+
+    <div id="upper-layer">
+      <div id="layer-container">
+        <span class="close">&times;</span>
+
+        <!-- step 1 -->
+        <form id="findUser" action="/findUser" method="post">
+          <input id="friend-user" type="text" name="username" placeholder="Enter your friend-name">
+          <input type="submit">
+        </form>
+
+      </div>
+    </div>
+
+    <div id="left">
+
+      <div id="nav">
+
+        <div id="user">
+          <div id="user-pic">
+            <img src="<%= user.pic %>" alt="">
+          </div>
+          <div class="text">
+            <h2>
+              <%= user.username %>
+            </h2>
+          </div>
+          <i id="add-user" class="ri-add-line"></i>
+          <a id="logout" href="/logout">
+            <h1>LOGOUT</h1>
+          </a>
+        </div>
+
+      </div>
+
+      <div id="chats">
+        <h1 id="content">Your chats</h1>
+
+        <!-- step 2 -->
+        <% user.chats.forEach(chat=>{ %>
+          <div class="chat" onclick="openChat('<%= chat.username %>','<%= chat.pic %>')">
+            <div id="user-pic">
+              <img src="<%= chat.pic %>" alt="">
+            </div>
+            <div class="text2">
+              <h2>
+                <%= chat.username %>
+              </h2>
+            </div>
+          </div>
+          <% }) %>
+
+      </div>
+
+    </div>
+
+    <div id="right">
+
+
+
+    </div>
+
+  </div>
+
+
+  <script src="/javascripts/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js"
+    integrity="sha512-Z6C1p1NIexPj5MsVUunW4pg7uMX6/TT3CUVldmjXx2kpip1eZcrAnxIusDxyFIikyM9A61zOVNgvLr/TGudOQg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+    integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    var username = "<%= user.username %>"
+    var socket = io();
+
+    socket.emit('userConnected', {     //step : 1 > emit user connected
+      user: username
+    })
+
+    function newmsg() {     // step : 2 > 
+      var msgField = document.querySelector("#msg-input")
+
+      var currentMessage = {  // 2.1 > store user/msg data
+        data: msgField.value,
+        fromUser: username,
+        toUser: currentOppositeUser
+      }
+
+      addMessage(currentMessage)     // 2.2 current msg ki value ko emit krna
+      socket.emit("newmsg", currentMessage)
+      msgField.value = ''
+    }
+
+    socket.on("newmsg", function (msg) {     // step : 4 fromUser > send msg request > toUser               (1.2 also)
+      console.log(msg)
+
+      if(msg.fromUser == currentOppositeUser){    
+        addMessage(msg);
+      }
+      else{
+        if(msg.isNewChat)
+        addChat(msg.fromUser, msg.fromUserPic)
+      } 
+    })
+
+    function addMessage(message) {    // step : 3 > which users from messages (msg = ``)
+      let msg
+
+      if (message.fromUser == username) {    // me
+        msg = `<div class="conver outgoing">
+          <div class="msg">${message.data}</div>
+        </div>`
+      }
+      else {   // friend
+        msg = `<div class="conver incoming">     
+          <div class="msg">${message.data}</div>
+        </div>`
+      }
+      document.querySelector("#conversation").innerHTML += msg
+    }
+
+  </script>
+
+</body>
+
+</html>

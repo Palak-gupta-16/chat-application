@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #go-log {
+            margin-top: 4vh;
+            margin-left: 3vw;
+        }
+
+        #log-inp {
+            padding: 3vw;
+        }
+    </style>
+
+    <form id="log-inp" action="/register" method="post">
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="pic" placeholder="user-pic url">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit">
+    </form>
+    <a href="/login"><button id="go-log">Go to Login Page</button></a>
+
+
+</body>
+
+</html>
